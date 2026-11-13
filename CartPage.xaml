@@ -1,0 +1,46 @@
+<Page x:Class="ЧудоОбувь.CartPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ЧудоОбувь"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Корзина" FontFamily="Calibri">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Text="Корзина" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="10"/>
+        
+        <DataGrid Name="CartGrid" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" FontSize="16">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Модель" Binding="{Binding ProductName}" Width="*"/>
+                <DataGridTextColumn Header="Размер" Binding="{Binding Size}" Width="80"/>
+                <DataGridTextColumn Header="Цена" Binding="{Binding Price}" Width="100"/>
+                <DataGridTextColumn Header="Кол-во" Binding="{Binding Quantity}" Width="80"/>
+                <DataGridTextColumn Header="Сумма" Binding="{Binding Total}" Width="100"/>
+                <DataGridTemplateColumn Width="150">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button Content="-" Width="30" Height="30" Background="#FF70B2AF" Click="BtnMinus_Click" Tag="{Binding}"/>
+                                <Button Content="+" Width="30" Height="30" Margin="5,0,5,0" Background="#FF70B2AF" Click="BtnPlus_Click" Tag="{Binding}"/>
+                                <Button Content="Удалить" Width="70" Height="30" Background="#FF70B2AF" Click="BtnRemove_Click" Tag="{Binding}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+            <TextBlock Name="TotalCostTB" FontSize="20" FontWeight="SemiBold" Margin="0,0,20,0" VerticalAlignment="Center"/>
+            <Button Content="Оформить заказ" FontSize="18" Height="40" Padding="15,0" Background="#FF70B2AF" Click="BtnCheckout_Click" VerticalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</Page>

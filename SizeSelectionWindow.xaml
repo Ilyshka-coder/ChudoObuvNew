@@ -1,0 +1,50 @@
+﻿<Window x:Class="ЧудоОбувь.SizeSelectionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ЧудоОбувь"
+        mc:Ignorable="d"
+        Title="Выберите размер" FontFamily="Calibri" Height="450" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок с названием товара -->
+        <TextBlock x:Name="ProductNameTextBlock" 
+                   Grid.Row="0" 
+                   FontWeight="Bold" 
+                   FontSize="14" 
+                   TextWrapping="Wrap" 
+                   Margin="0,0,0,10"/>
+
+        <!-- Список доступных размеров -->
+        <ListBox x:Name="SizesListBox" 
+                 Grid.Row="1" 
+                 Margin="0,0,0,10"
+                 DisplayMemberPath="Display"
+                 MouseDoubleClick="SizesListBox_MouseDoubleClick">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Padding" Value="5"/>
+                    <Setter Property="FontSize" Value="14"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+
+        <!-- Кнопки управления -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Выбрать" Background="#FF70B2AF"
+                    Width="90" Height="30" 
+                    Margin="0,0,10,0" 
+                    IsDefault="True"
+                    Click="BtnSelect_Click"/>
+            <Button Content="Отмена" Background="#FF70B2AF"
+                    Width="90" Height="30" 
+                    IsCancel="True"/>
+        </StackPanel>
+    </Grid>
+</Window>
